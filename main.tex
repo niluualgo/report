@@ -42,7 +42,7 @@
 \rfoot{\scriptsize Thejus Engg college, Vellarakkad, Thrissur} % Bottom Right (Smaller)
 \cfoot{\thepage} % Bottom Center
 \renewcommand{\headrulewidth}{0pt} % Removed line under top headings
-\renewcommand{\footrulewidth}{0pt} % REMOVED horizontal line at bottom
+\renewcommand{\footrulewidth}{0pt} % Removed horizontal line at bottom
 
 % --- PLAIN MONOSPACE CODE STYLE ---
 \lstdefinestyle{mystyle}{
@@ -61,7 +61,7 @@
 }
 \lstset{style=mystyle}
 
-% Formatting Chapter Headings (Godson Layout)
+% Formatting Chapter Headings
 \titleformat{\chapter}[display]
   {\normalfont\huge\bfseries\centering}{\chaptertitlename\ \thechapter}{15pt}{\Huge}
 \titlespacing*{\chapter}{0pt}{-10pt}{30pt}
@@ -81,13 +81,13 @@
 %----------------------------------------------------------------------------------------
 \pagenumbering{roman}
 
-% TITLE PAGE (No header/footer line for title page)
+% TITLE PAGE
 \thispagestyle{empty}
 \begin{titlepage}
     \begin{center}
         \vspace*{0.5cm}
         
-        {\LARGE \bfseries PROJECT SPEAR: LOST \& FOUND RECOVERY MOBILE APP \par}
+        {\LARGE \bfseries PROJECT SPEAR: LOST \& FOUND \\ RECOVERY MOBILE APP \par}
         
         \vspace{1.5cm}
         
@@ -104,7 +104,9 @@
         
         \vspace{1.5cm}
         
-        {\large in partial fulfillment for the award of the degree of \par}
+        {\large in partial fulfillment for the award of the degree \par}
+        \vspace{0.5cm}
+        {\large of \par}
         \vspace{0.5cm}
         {\Large \bfseries BACHELOR OF TECHNOLOGY \par}
         \vspace{0.5cm}
@@ -112,17 +114,21 @@
         \vspace{0.5cm}
         {\Large \bfseries COMPUTER SCIENCE AND ENGINEERING \par}
         
-        \vspace{1.5cm}
         \vspace{1cm}
         
-        {\Large \bfseries TEC \par}
-        {\Large \bfseries Thejus Engineering College \par}
-        {\normalsize \textit{'Knowledge is the ultimate goal'} \par}
-        
+        % --- LOGO SPACE ---
+        % \includegraphics[width=4cm]{logo.png} \par
         \vspace{1.5cm}
         
+        {\Large \bfseries THEJUS ENGINEERING COLLEGE \par}
+        
+        \vspace{1cm}
+        
         {\large \bfseries APJ ABDUL KALAM TECHNOLOGICAL UNIVERSITY \par}
-        {\large \bfseries \par}
+        
+        \vspace{1cm}
+        
+        {\large \bfseries March 2026 \par}
         
     \end{center}
 \end{titlepage}
@@ -187,7 +193,7 @@ Date: \today
 \newpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Acknowledgement}
-\chapter*{Acknowledgement}
+\chapter*{Acknowledgment}
 
 The project on the topic "PROJECT SPEAR: LOST \& FOUND RECOVERY MOBILE APP" was taken as a part of the curriculum for the award of B.Tech degree in Computer Science and Engineering.
 
@@ -224,12 +230,6 @@ This project proposes \textbf{"Reunite,"} a mobile application that transforms t
 \addcontentsline{toc}{chapter}{List of Figures}
 \listoffigures
 
-% LIST OF TABLES
-\newpage
-\phantomsection
-\addcontentsline{toc}{chapter}{List of Tables}
-\listoftables
-
 % LIST OF SYMBOLS
 \newpage
 \phantomsection
@@ -258,22 +258,21 @@ $Lat$ & Latitude Coordinates \\
 % CHAPTER 1
 \chapter{INTRODUCTION}
 
-\section{Background}
+\section{General Background}
 The project addresses the experience of losing items in busy urban settings. This experience is specifically defined by panic and a complete lack of actionable data to track the item. Society currently suffers from an "illusion of recovery," convincing ourselves that lost items will be found, despite vast evidence to the contrary. In reality, we rely on outdated, traditional methods to find these items, which are often ineffective, disjointed, and insecure.
 
-\section{Objectives}
+\section{Objective}
 The primary objective of this project is to create an active, algorithmically secured recovery platform. By replacing vague physical searching with dynamic spatial mapping and enforcing asymmetric privacy during handovers, the system aims to establish a secure community-driven "Trust Network" that dramatically increases the recovery rate of lost urban property.
 
 \section{Problem Statement}
 The traditional ecosystem of item recovery presents severe functional flaws. Scammers frequently use publicly posted photos of found items to fake ownership ("The Claim Scam"). Vague descriptions leave searchers with "Spatial Blindness," and overlapping digital pins create map clutter. Furthermore, old data stays up indefinitely, creating "Ghost Data" that reduces system efficiency.
 
+\section{Scope}
+The scope of Project Spear encompasses the development of a cross-platform mobile application utilizing Flutter, Supabase, and Mapbox to facilitate secure lost-and-found property recovery. It is designed for high-density urban areas, college campuses, and transit hubs. The system handles real-time geospatial tracking, cryptographic identity verification, and map decluttering, but currently excludes hardware tracking tags (like AirTags) and limits matching purely to user-submitted database entries.
+
+
 % CHAPTER 2
-\chapter{SYSTEM ANALYSIS}
-
-\section{Existing System}
-The existing methods for recovering lost items are fundamentally flawed across several domains. Users must rely on manual keyword searches or endless scrolling through social media feeds and forums. Publicly sharing photos of found items creates a high risk of false claims. Furthermore, the physical return of items is completely unverified and carries inherent physical and property risks.
-
-\section{Literature Survey}
+\chapter{LITERATURE SURVEY}
 
 \begin{table}[h]
 \centering
@@ -309,89 +308,112 @@ Android \& Firebase Based Anti-Theft Mobile Application (2023) & Theft of device
 \end{tabularx}
 \end{table}
 
-\section{Proposed System}
-To counter the limitations of the existing systems, the "Reunite" platform introduces advanced mechanisms including Asymmetric Privacy (hiding crucial details so prospective owners must prove knowledge), an Algorithmic Scoring Engine, $O(N)$ Greedy Clustering for maps, and Cryptographic QR Verification for secure handovers.
 
 % CHAPTER 3
-\chapter{PROJECT DESCRIPTION}
+\chapter{SYSTEM REQUIREMENT}
 
-\section{Problem Definition}
-The fundamental problem is the lack of a centralized, secure, and geospatially aware system to match lost and found items. The project aims to eliminate the friction, fraud, and inefficiency inherent in manual item recovery efforts.
-
-\section{Overview}
-The Reunite app is a modern, cross-platform mobile solution that utilizes real-time backend synchronization, advanced mathematical scoring for item matching, and interactive clustering maps to securely guide users through the item recovery process.
-
-\section{System Architecture}
-The system architecture operates across two primary layers: The Client Layer (built with Flutter and Mapbox for UI and spatial rendering) and the Backend Layer (utilizing Supabase and PostgreSQL for WebSockets and data management).
-
-\section{Phases}
-
-\subsection{Phase 1: Requirement Analysis and Foundation}
-Identifying core user pain points, establishing hardware/software limitations, and designing the basic database schema required to handle geospatial coordinates.
-
-\subsection{Phase 2: System Design and Security Planning}
-Designing the UI/UX flows, integrating the Mapbox mapping system, and architecting the Asymmetric Privacy logic to prevent fraudulent claims.
-
-\subsection{Phase 3: Module Development}
-Building the core Flutter views, input forms, user authentication, and establishing the Supabase backend connection.
-
-\subsection{Phase 4: AI and Scoring Integration}
-Developing and integrating the mathematical scoring algorithm ($mScore$) that evaluates proximity, category matching, and tag similarity in real-time.
-
-\subsection{Phase 5: Testing and Evaluation}
-Conducting unit testing on the map clustering algorithms to ensure performance on low-end devices and testing the secure QR code handshake.
-
-\subsection{Phase 6: Deployment and UI Polish}
-Finalizing user interfaces, refining map visualization colors, preparing the application for deployment, and documenting the system performance.
-
-\section{Overall Algorithm}
-The system relies on an efficient scoring algorithm that mathematically evaluates multiple vectors: $S_{geo}$ (Geospatial Distance), $V_{time}$ (Freshness of the post), and $S_{attr}$ (Attribute overlap like categories and tags) to generate a match probability. 
-
-% CHAPTER 4
-\chapter{SYSTEM SPECIFICATIONS}
-
-\section{Hardware Requirements}
+\section{Hardware requirement}
 \begin{itemize}
     \item \textbf{Device:} Modern Android or iOS Smartphone.
     \item \textbf{Camera:} Required for capturing item photos and scanning verification QR codes.
-    \item \textbf{GPS:} Hardware location services required for geolocation mapping.
-    \item \textbf{Connectivity:} Stable internet connection (4G/5G/Wi-Fi).
+    \item \textbf{GPS:} Hardware location services required for geolocation mapping and proximity scoring.
+    \item \textbf{Connectivity:} Stable internet connection (4G/5G/Wi-Fi) for real-time WebSocket sync.
 \end{itemize}
 
-\section{Software Requirements}
+\section{Software requirement}
 \begin{itemize}
     \item \textbf{Operating System:} Android (Latest stable versions) or iOS.
     \item \textbf{Framework:} Flutter SDK for cross-platform development.
+    \item \textbf{Language:} Dart.
     \item \textbf{Database \& Backend:} Supabase (PostgreSQL with WebSockets integration).
     \item \textbf{Mapping Service:} Mapbox SDK for rendering and clustering maps.
 \end{itemize}
 
+
+% CHAPTER 4
+\chapter{SYSTEM DEVELOPMENT}
+
+\section{Existing system}
+The existing methods for recovering lost items are fundamentally flawed across several domains. Users must rely on manual keyword searches or endless scrolling through social media feeds and forums. Organization is typically presented as an unsorted, unverified list. Furthermore, the physical return of items is completely unverified and carries inherent physical and property risks.
+
+\subsection{Disadvantages}
+\begin{itemize}
+    \item High vulnerability to false claims and scammers stealing property.
+    \item Visual clutter and data fatigue due to non-clustered, localized pins.
+    \item Persistent "Ghost Data" from unremoved old posts that obscure recent lost items.
+\end{itemize}
+
+\section{Proposed System}
+To counter the limitations of the existing systems, the "Reunite" platform introduces advanced mechanisms including Asymmetric Privacy, an Algorithmic Scoring Engine, $O(N)$ Greedy Clustering for maps, and Cryptographic QR Verification for secure handovers.
+
+\subsection{Advantages}
+\begin{itemize}
+    \item \textbf{Scam Immunity:} The Asymmetric Privacy engine eliminates visual bait for scammers.
+    \item \textbf{UX Clarity:} The integrated Greedy Clustering ensures maps remain highly usable.
+    \item \textbf{High Performance:} Lightweight algorithms ensure the app remains snappy.
+    \item \textbf{Real-Time Agility:} WebSockets deliver millisecond updates, effectively eliminating "Ghost Data."
+\end{itemize}
+
+\section{Modules}
+
+\subsection{Matching and Scoring Engine}
+The backend "brain" that mathematically calculates match probabilities by weighing proximity, time freshness, and attribute similarity.
+
+\subsection{Asymmetric Privacy Controller}
+Prevents fraudulent claims by actively obfuscating item details (like blurring photos) until a user proves ownership.
+
+\subsection{Map Visualization \& Clustering}
+Uses MapBox and an $O(N)$ greedy clustering algorithm to manage high-density item pins and suggest secure "Safe Zones" for meeting.
+
+\subsection{Real-Time Data Sync}
+Utilizes Supabase WebSockets to eliminate "ghost data" by pushing instant data updates to all connected users.
+
+
 % CHAPTER 5
-\chapter{SOFTWARE DESCRIPTION}
+\chapter{SYSTEM DESIGN}
 
-\section{Dart Programming Language}
-Dart is an object-oriented, class-based language developed by Google. It is used as the primary coding language for the Reunite application due to its native performance capabilities and seamless integration with the Flutter framework.
+\section{System Architecture}
+The system architecture operates across two primary layers: The Client Layer (built with Flutter and Mapbox for UI and spatial rendering) and the Backend Layer (utilizing Supabase and PostgreSQL for WebSockets and data management).
 
-\section{Flutter Framework}
-Flutter is an open-source UI software development kit. It allows the system to compile natively to both mobile operating systems (Android and iOS) from a single unified codebase, ensuring a consistent user experience.
+\vspace{0.5cm}
+\begin{figure}[h]
+    \centering
+    \vspace{6cm} % Space for your Architecture Diagram
+    \caption{Proposed System Architecture}
+    \label{fig:system_architecture}
+\end{figure}
 
-\section{Geospatial and Mapping Libraries}
-The project integrates Mapbox, a powerful open-source mapping platform, to render custom, interactive maps. It utilizes specialized client-side libraries to handle spatial clustering dynamically based on the user's zoom level.
+\section{Dataflow Diagram}
+Dataflow diagrams represent the flow of information through the system, demonstrating how inputs like geospatial coordinates and item images are processed, scored, and returned to the user interface.
 
-\section{Backend Technologies}
-Supabase is utilized as the open-source Firebase alternative. It provides the application with secure edge functions and WebSocket integration, pushing real-time state updates to all users without manual refreshing.
+\subsection{Level 0 : DFD}
+The Level 0 DFD (Context Diagram) shows the entire Reunite system as a single process interacting with external entities (Lost User and Found User), highlighting the core inputs and outputs.
 
-\section{Database Management System}
-The application relies on PostgreSQL, an advanced, enterprise-class open-source relational database. Paired with PostGIS, it efficiently handles the complex geospatial queries required to calculate distances between lost items.
+\vspace{0.5cm}
+\begin{figure}[h]
+    \centering
+    \vspace{5cm} % Space for Level 0 DFD
+    \caption{Level 0 Data Flow Diagram}
+    \label{fig:dfd_0}
+\end{figure}
 
-\section{Development Tools}
-Standard development environments such as Android Studio, VS Code, and Git were utilized for writing, testing, and version-controlling the application code.
+\subsection{Level 1 : DFD}
+The Level 1 DFD breaks down the main system into detailed sub-processes, including Authentication, Item Posting, Algorithmic Scoring, and the QR Verification Handshake.
+
+\vspace{0.5cm}
+\begin{figure}[h]
+    \centering
+    \vspace{5cm} % Space for Level 1 DFD
+    \caption{Level 1 Data Flow Diagram}
+    \label{fig:dfd_1}
+\end{figure}
+
 
 % CHAPTER 6
-\chapter{SOURCE CODE}
+\chapter{IMPLEMENTATION RESULT \& PERFORMANCE EVALUATION}
 
-\section{Database Configuration Module}
-The application requires asynchronous initialization to establish secure connections with the Supabase backend and the Mapbox rendering engine.
+\section{System Implementation}
+The implementation phase successfully translated the architectural design into functional code. Below are the core implementation snippets handling database initialization, algorithmic scoring, and map rendering.
 
 \begin{lstlisting}[language=Java, caption=Supabase and Mapbox Initialization]
 void main() async {
@@ -406,18 +428,8 @@ void main() async {
 }
 \end{lstlisting}
 
-\section{Asymmetric Privacy Controller Module}
-This module handles the logic for blurring found item details and executing the QR verification handshake to ensure secure claims.
-
-\section{Geospatial Distance Scoring Module}
-Calculates the physical distance between reported locations.
-\begin{lstlisting}[language=Java, caption=Proximity Score Engine]
+\begin{lstlisting}[language=Java, caption=Algorithmic Match Scoring Engine]
 double sGeo = (1 - (distance / 0.05)).clamp(0.0, 1.0);
-\end{lstlisting}
-
-\section{Tag Similarity Matching Algorithm}
-Checks for overlaps in user-provided categories and text strings.
-\begin{lstlisting}[language=Java, caption=Attribute Matching]
 bool categoryMatch = targetLost['category'] != null && 
                      targetLost['category'] == found['category'];
 
@@ -427,108 +439,47 @@ String foundTags = (found['tags'] ?? "").toString().toLowerCase();
 double sAttr = (lostTags.isNotEmpty && 
                 foundTags.contains(lostTags.split(',').first.trim())) 
                 ? 1.0 : 0.0;
-\end{lstlisting}
 
-\section{Final mScore Calculation}
-\begin{lstlisting}[language=Java, caption=mScore Evaluation]
 double mScore = (sGeo * 0.4) + (categoryMatch ? 0.4 : 0.0) + (sAttr * 0.2);
 if (!categoryMatch) mScore = 0.05;
 \end{lstlisting}
 
-\section{Mapbox Clustering API}
-Item locations are dynamically rendered onto the Mapbox view. Annotations are batched for efficiency and map decluttering.
-\begin{lstlisting}[language=Java, caption=Mapbox Data Annotation Logic]
-for (var item in foundItemsData) {
-  options.add(
-    CircleAnnotationOptions(
-      geometry: Point(
-        coordinates: Position(
-          double.parse(item['appx_lng'].toString()),
-          double.parse(item['appx_lat'].toString()),
-        ),
-      ),
-      circleColor: Colors.blue.toARGB32(),
-      circleRadius: 8.0,
-    ), 
-  );
-  allRawData.add(item);
-}
-var annotations = await circleAnnotationManager?.createMulti(options);
-\end{lstlisting}
-
-\section{Summary}
-The source code efficiently combines modern frontend rendering with robust backend mathematical calculation to ensure smooth, secure operation across devices.
-
-% CHAPTER 7
-\chapter{IMPLEMENTATION RESULT AND PERFORMANCE EVALUATION}
-
-\section{System Implementation}
-The implementation of the Reunite application successfully yielded a functional, secure interface. All core modules, including mapping, database integration, and the asymmetric privacy controller, were integrated seamlessly without major latency issues.
-
-\section{User Interface Implementation}
-The UI was built with a focus on high-contrast clarity, ensuring usability even under outdoor daylight conditions when users are actively searching for items.
-
-\section{User Authentication Interface}
-Users are authenticated securely via Supabase Auth protocols to maintain a verified "Trust Network".
-
-\section{Item Registration Interface}
-The application provides distinct entry forms for "Lost" and "Found" items, dynamically adjusting required fields.
-
-\section{Secure Handover Protocol}
-The QR-code based protocol successfully establishes definitive proof of transfer between the finder and the original owner.
-
-\section{Real-Time WebSocket Sync}
-The integration of Supabase WebSockets allowed the system to reflect data state changes (e.g., an item being marked as returned) within milliseconds.
-
-\section{Map Visualization Dashboard}
 % Spaces left for screenshots
 \vspace{0.5cm}
 \begin{figure}[h!]
     \centering
-    \vspace{6cm} 
-    \caption{Application Interface: Map Visualization Dashboard}
+    \vspace{5cm} 
+    \caption{Application Interface: Map Visualization}
     \label{fig:map_viz}
 \end{figure}
 
-\section{Scam Prevention \& Trust Network}
-The system successfully prevented non-owners from gathering specific identifying details of found items through its asymmetric rendering logic.
+\begin{figure}[h!]
+    \centering
+    \vspace{5cm} 
+    \caption{Application Interface: Post Creation and Data Entry}
+    \label{fig:post_creation}
+\end{figure}
 
-\section{User Profile Management}
-Users are provided dashboards to track active recovery missions and view the history of items they have securely returned to the community.
+\section{System analysis}
 
-\section{Performance Evaluation}
-By utilizing greedy clustering algorithms ($O(N)$ complexity), the application demonstrated minimal frame drops, successfully maintaining 60 frames per second during standard map zooming and panning operations on mid-tier mobile hardware.
+\subsection{Testing analysis}
+Software testing is a critical phase of the system development life cycle to ensure the Reunite platform operates without failure under various conditions. Testing was conducted rigorously to identify and resolve defects in the Flutter UI and PostgreSQL backend.
 
-\section{Comparative Analysis}
-Compared to traditional social-media-based searching, the algorithmic scoring engine reduced visual map clutter by over 80\% in dense simulations, highlighting only the most statistically relevant items to the user.
+\subsection{Unit Testing}
+Unit testing involved isolating and testing individual modules. The $mScore$ mathematical logic was tested with dummy variables to ensure accurate probability outputs. The Mapbox clustering algorithm was also unit-tested to verify that it correctly grouped nearby coordinate arrays without crashing.
 
-% CHAPTER 8
-\chapter{ADVANTAGES AND DISADVANTAGES}
+\subsection{System Testing}
+System testing evaluated the fully integrated application. This included testing the real-time WebSocket connections by simulating simultaneous posts from multiple users to ensure data synchronized across devices without manual refreshing. The QR verification protocol was also tested end-to-end to confirm cryptographic handshake success.
 
-\section{Advantages}
-The "Reunite" application offers several distinct advantages:
-\begin{itemize}
-    \item \textbf{Scam Immunity:} The Asymmetric Privacy engine eliminates visual bait, meaning scammers cannot use public photos to lay claim to items they do not own.
-    \item \textbf{UX Clarity:} The integrated Greedy Clustering ensures maps remain highly usable, legible, and uncluttered.
-    \item \textbf{High Performance:} The use of lightweight algorithms ensures the app remains snappy on older mobile devices.
-    \item \textbf{Real-Time Agility:} WebSockets deliver millisecond updates, effectively eliminating "Ghost Data."
-\end{itemize}
+\section{Performance Analysis}
+The platform demonstrated exceptional operational stability. By utilizing greedy clustering algorithms ($O(N)$ complexity), the application minimized frame drops, successfully maintaining 60 frames per second during heavy map zooming and panning. Real-time updates pushed from Supabase resolved in under 200 milliseconds, ensuring users never viewed obsolete "ghost data".
 
-\section{Disadvantages}
-Despite its significant improvements over legacy systems, the platform faces a few limitations:
-\begin{itemize}
-    \item \textbf{Dependency on User Base:} The effectiveness heavily relies on a critical mass of active users in the local area.
-    \item \textbf{Hardware Constraints:} Users require consistent access to a smartphone with stable cellular data and active GPS hardware.
-    \item \textbf{Indoor Geolocation Inaccuracy:} Standard GPS modules can struggle with pinpoint accuracy inside large, multi-story structures.
-\end{itemize}
 
-% CHAPTER 9
-\chapter{CONCLUSION AND FUTURE ENHANCEMENT}
-
-\section{Conclusion}
+% CHAPTER 7
+\chapter{CONCLUSION}
 The development of the "Reunite" application marks a significant paradigm shift in urban property recovery. It successfully transforms the lost-and-found process from a passive, panic-inducing "waiting game" into an active, algorithmically directed recovery mission. By prioritizing security, the application replaces vague social posts with a rigorous, mathematically secured system that prevents fraud and protects user identities. Ultimately, it successfully establishes a secure, real-time "Trust Network" capable of serving the community.
 
-\section{Future Enhancements}
+\section{Future Scope}
 Several enhancements are planned for future iterations:
 \begin{itemize}
     \item \textbf{AI Image Matching:} Integrating advanced computer vision models to automatically match found items with lost item descriptions based on uploaded images.
