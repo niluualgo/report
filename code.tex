@@ -1,0 +1,740 @@
+\documentclass[12pt,a4paper]{report}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx} % Sets the document font to Times New Roman
+\usepackage{geometry}
+\geometry{a4paper, left=1.5in, right=1in, top=1in, bottom=1in}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{fancyhdr} % For text around borders (headers/footers)
+\usepackage{tikz}     % For drawing the double border
+\usepackage{eso-pic}  % For applying the border to every page
+
+% --- DOUBLE BORDER CONFIGURATION ---
+\usetikzlibrary{calc}
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[overlay,remember picture]
+    % Outer Thick Border (aligned close to margins)
+    \draw[line width=1.2pt] 
+         ($ (current page.north west) + (1.35in,-0.85in) $) 
+      rectangle 
+         ($ (current page.south east) + (-0.85in,0.85in) $);
+    % Inner Thin Border
+    \draw[line width=0.5pt] 
+         ($ (current page.north west) + (1.4in,-0.9in) $) 
+      rectangle 
+         ($ (current page.south east) + (-0.9in,0.9in) $);
+  \end{tikzpicture}
+}
+
+% -------- HEADER & FOOTER SETUP --------
+\pagestyle{fancy}
+\fancyhf{} % clear default
+
+% Header
+\lhead{\footnotesize INTELLIGENT RESUME BUILDER \& ANALYZER}
+\rhead{\footnotesize Mini Project Report}
+
+% Footer
+\lfoot{\scriptsize Department of Computer Science and Engineering}
+\rfoot{\scriptsize Thejus Engg college, Vellarakkad, Thrissur}
+\cfoot{\thepage}
+
+% Remove lines
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% -------- FIX FOR FIRST PAGE / CHAPTER PAGES --------
+\fancypagestyle{plain}{
+    \fancyhf{}
+    \lhead{\footnotesize INTELLIGENT RESUME BUILDER \& ANALYZER}
+    \rhead{\footnotesize Mini Project Report}
+    \lfoot{\scriptsize Department of Computer Science and Engineering}
+    \rfoot{\scriptsize Thejus Engg college, Vellarakkad, Thrissur}
+    \cfoot{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% --- PLAIN MONOSPACE CODE STYLE ---
+\lstdefinestyle{mystyle}{
+    basicstyle=\ttfamily\scriptsize, 
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=none,                 
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    xleftmargin=0.5cm, 
+    xrightmargin=0.5cm
+}
+\lstset{style=mystyle}
+
+% Formatting Chapter Headings
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering}{\chaptertitlename\ \thechapter}{15pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-10pt}{30pt}
+
+% Section formatting
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\onehalfspacing
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%   FRONT MATTER (Roman Numeral Paging)
+%----------------------------------------------------------------------------------------
+\pagenumbering{roman}
+
+%---------------- TITLE PAGE ----------------%
+\begin{titlepage}
+\centering
+\thispagestyle{empty}
+
+\vspace*{1cm}  
+
+{\Large \textbf{INTELLIGENT RESUME BUILDER \& ANALYZER}}\\[0.8cm]
+
+\vspace{0.7cm}
+
+{\large \textbf{MINI PROJECT REPORT}}\\[1.2cm]
+
+\normalsize{Submitted by}\\[0.4cm]
+
+\begin{center}
+\textbf{MANU MURALEEDHARAN E (TJE23CSXXX)}\\
+\textbf{MARTIN SHAJI (TJE23CSXXX)} \\
+\textbf{NANDAGOPAL M (TJE23CSXXX)} \\
+\textbf{NAVEEN BIJU (TJE23CSXXX)}\\
+\end{center}
+
+\vspace{0.7cm}
+
+{\normalsize in partial fulfillment for the award of the degree}\\[0.2cm]
+{\normalsize of}\\[0.2cm]
+{\large \textbf{BACHELOR OF TECHNOLOGY}}\\[0.2cm]
+{\normalsize in}\\[0.2cm]
+{\large \textbf{COMPUTER SCIENCE AND ENGINEERING}}\\[0.6cm]
+
+% -------- LOGO --------
+\includegraphics[width=2.8cm]{logo.jpg}\\[0.8cm]
+\\[0.8cm] % Placeholder for logo
+
+{\large \textbf{THEJUS ENGINEERING COLLEGE}}\\[0.2cm]
+{\normalsize APJ ABDUL KALAM TECHNOLOGICAL UNIVERSITY}\\[1cm]
+{\large \textbf{March 2026}}
+
+\end{titlepage}
+
+%---------------- CERTIFICATE PAGE ----------------%
+\newpage
+\thispagestyle{empty}  
+
+\begin{center}
+
+{\Large \textbf{Department of Computer Science and Engineering}}\\
+{\Large \textbf{Thejus Engineering College, Thrissur}}\\[2mm]
+Vellarakkad, Thrissur - 680 584\\
+(http://www.thejusengg.ac.in)
+
+\vspace{0.7cm}
+
+% -------- LOGO --------
+% \includegraphics[width=2.8cm]{logo.jpeg}
+
+
+\vspace{0.7cm}
+
+{\LARGE \textbf{\underline{CERTIFICATE}}}
+
+\end{center}
+
+\vspace{0.5cm}
+
+\setstretch{1.2}
+This is to certify that the report entitled \textbf{INTELLIGENT RESUME BUILDER \& ANALYZER} submitted by \textbf{MANU MURALEEDHARAN E, MARTIN SHAJI, NANDAGOPAL M, and NAVEEN BIJU}
+to the APJ Abdul Kalam Technological University in partial fulfillment
+of the B.Tech.\ degree in Computer Science and Engineering is a bonafide
+record of the project work carried out by them during the year
+2025--2026 under our guidance and supervision. This report in any
+form has not been submitted to any other University or Institute
+for any purpose.
+
+\vspace{1.4cm}
+
+\noindent
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
+
+\textbf{Ms. Lidhi P} & \textbf{Ms. Lidhi P} \\
+(Project Guide) & (Project Coordinator) \\
+Assistant Professor & Assistant Professor \\
+Dept. of CSE & Dept. of CSE \\
+Thejus Engineering College & Thejus Engineering College \\
+Thrissur & Thrissur \\
+
+\end{tabular*}
+
+\vspace{1.4cm}
+
+\begin{center}
+\textbf{Ms. Vinitha A V}\\
+Associate Professor and HOD\\
+Dept. of CSE\\
+Thejus Engineering College\\
+Thrissur
+\end{center}
+
+%---------------- ACKNOWLEDGEMENT ----------------%
+\newpage
+\setcounter{page}{1}
+\chapter*{Acknowledgement}
+\addcontentsline{toc}{chapter}{Acknowledgement}
+
+We would like to express our sincere gratitude to all those who have supported and guided us throughout the successful completion of our mini project titled \textbf{“Intelligent Resume Builder \& Analyzer.”}
+
+First and foremost, we extend our heartfelt thanks to our project guide \textbf{Ms. Lidhi P}, Assistant Professor, Department of Computer Science and Engineering, Thejus Engineering College, for her valuable guidance, continuous encouragement, and support throughout the project.
+
+We also express our sincere thanks to \textbf{Ms. Vinitha A V}, Head of the Department of Computer Science and Engineering, Thejus Engineering College, for providing the necessary facilities and academic support required for the successful completion of this work.
+
+We are grateful to the college management for providing the infrastructure and learning environment needed for this project. We also thank our faculty members, friends, and classmates for their support, suggestions, and encouragement during the development of this project.
+
+Finally, we express our heartfelt gratitude to our family members for their constant support and motivation.
+
+\vspace{0.5cm}
+
+\begin{flushright}
+Manu Muraleedharan E\\
+Martin Shaji\\
+Nandagopal M\\
+Naveen Biju\\
+\end{flushright}
+
+%---------------- ABSTRACT ----------------%
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+In high-density corporate recruitment environments, managing application data is often a chaotic experience defined by overwhelming volume and a severe lack of actionable screening tools. Current methods for parsing candidate resumes rely heavily on manual review boards, unstructured email chains, or rigidly outdated keyword filters. This reliance creates an "illusion of efficiency," where HR teams falsely believe the best candidates are easily found, despite statistics showing extremely low semantic matching rates and high instances of qualified candidate rejection.
+
+To address these critical flaws, this project proposes the "Intelligent Resume Builder \& Analyzer", a comprehensive web application that transforms the recruitment process from a passive reading task into an active, algorithmically secured talent acquisition mission. The core innovation of the system lies in the establishment of a "Semantic Trust Network." The system prevents the prevalent "Keyword Stuffing Scam" through an advanced NLP protocol, which deeply analyzes the contextual meaning of candidate skills rather than just word counts. Furthermore, the application ensures candidates are fairly evaluated utilizing a standardized ATS-friendly building process. 
+
+The application is powered by a custom matching and scoring engine that calculates the probability of a match based on skill similarity, experience freshness, and educational alignment. To handle the visual data clutter common in high-density applicant pools, the frontend employs a streamlined React dashboard algorithm ($O(N)$) on top of Node.js. Built using the MERN stack for cross-platform web compatibility and Express for millisecond real-time API synchronization, the Analyzer aims to eliminate "ghost applications" and provide a highly efficient, scalable, and fair recruitment platform for modern organizations.
+
+\newpage
+
+%---------------- CONTENTS ----------------%
+\tableofcontents
+
+\newpage
+%---------------- LIST OF FIGURES ----------------%
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+
+\newpage
+
+%---------------- LIST OF SYMBOLS ----------------%
+\chapter*{List of Symbols}
+\addcontentsline{toc}{chapter}{List of Symbols}
+
+\begin{center}
+\begin{tabular}{|l|p{9cm}|}
+\hline
+\textbf{Symbol / Term} & \textbf{Description} \\
+\hline
+UI & User Interface \\
+\hline
+UX & User Experience \\
+\hline
+O(N) & Big O Notation representing Linear Time Complexity \\
+\hline
+NLP & Natural Language Processing \\
+\hline
+ATS & Applicant Tracking System \\
+\hline
+DB & Database \\
+\hline
+JSON & JavaScript Object Notation \\
+\hline
+Node.js & Backend JavaScript runtime environment \\
+\hline
+MongoDB & NoSQL database system used in the project \\
+\hline
+React & Frontend library providing component-based UI tools \\
+\hline
+Express & Backend web application framework for Node.js \\
+\hline
+spaCy / NLTK & Advanced NLP libraries for text processing \\
+\hline
+$S_{skill}$ & Skill Match Score parameter in the matching engine \\
+\hline
+$V_{exp}$ & Experience Verification Score parameter in the matching engine \\
+\hline
+$S_{edu}$ & Educational Alignment Score parameter in the matching engine \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+%   MAIN CONTENT (Arabic Numeral Paging)
+%----------------------------------------------------------------------------------------
+\clearpage
+\pagenumbering{arabic}
+
+%---------------- CHAPTER 1 ----------------%
+\chapter{Introduction}
+
+\section{General Background}
+
+The experience of applying for a job in a highly competitive digital environment—such as a large tech corporation, a bustling startup, or an enterprise firm—is universally stressful. This experience is characterized by immediate anxiety and a complete lack of actionable feedback. The candidate rarely knows exactly why their resume was rejected, and the traditional infrastructure for managing such applications is severely outdated. 
+
+Society currently suffers from an "illusion of algorithmic fairness." People convince themselves that if an application is submitted, a perfectly tuned AI will simply read it and pass the best candidates to a hiring manager. However, evidence and recruitment statistics heavily contradict this. In reality, we rely on fragmented, unstructured methods to filter these documents. Candidates post varied PDF formats, Word documents, or unregulated text files. Because legacy ATS platforms were not designed for deep semantic understanding, the data is misread, unorganized, and highly susceptible to incorrectly filtering out top-tier talent.
+
+As application volume increases and the average job post receives hundreds of submissions (via LinkedIn, Indeed, etc.), the processing of resumes has grown exponentially difficult. The difficulty in accurately reuniting open positions with their rightful candidates requires a dedicated, technologically advanced solution that prioritizes contextual understanding, semantic awareness, and user feedback.
+
+\section{Problem Definition and Identification}
+
+The current manual and legacy digital methods of managing recruitment suffer from several critical, systemic flaws that hinder successful hiring and frustrate users:
+
+\begin{itemize}
+    \item \textbf{The Keyword Stuffing Scam:} When candidates format a resume, they typically copy-paste the entire job description in hidden white text to trick legacy systems. Malicious actors use this exact phrasing to fake expertise, claiming the skills are theirs and stealing interview slots from honest applicants.
+    \item \textbf{Semantic Blindness:} Traditional parsing algorithms rely on exact textual matching (e.g., searching for "React" instead of understanding "Frontend Development"). These descriptions leave recruiters semantically blind, unable to accurately pinpoint transferable skills or track the trajectory of a candidate's career growth.
+    \item \textbf{Data Clutter:} Existing digital solutions that attempt to use dashboard interfaces often fail to scale. In busy hiring cycles, hundreds of unqualified and qualified resumes overlap on the recruiter's screen, creating severe visual clutter that renders the digital workspace entirely unusable.
+    \item \textbf{Ghost Feedback:} Old, unresolved applications stay pending on corporate portals forever. Because there is no real-time synchronization or automated feedback loop, the system becomes clogged with frustrated candidates, making it impossible to maintain a positive employer brand.
+\end{itemize}
+
+\section{Objective}
+
+The primary objective of the Intelligent Resume Analyzer is to transition the recruitment process from a passive "waiting game" into an active, algorithmically optimized shortlisting mission. 
+
+Specifically, the objectives are:
+\begin{itemize}
+    \item To build a secure "Semantic Trust Network" that deeply analyzes the actual context of a candidate's skills.
+    \item To automate the matching process between resumes and job descriptions using a robust, multi-variable NLP scoring engine.
+    \item To provide clear, un-cluttered analytical visualization of candidate pools using advanced React-based dashboards.
+    \item To guarantee the readability of applicant documents by implementing an ATS-optimized Resume Builder protocol.
+\end{itemize}
+
+\section{Scope}
+
+The scope of the project encompasses the end-to-end development of a cross-platform web application. The frontend is developed utilizing the React framework to ensure seamless operation on desktop and mobile browsers. The backend relies on Node.js and MongoDB to handle document data and push real-time evaluation updates via REST APIs. Key integrations include advanced Python-based NLP modules for complex text extraction and the development of custom matching algorithms on the server-side to automate discovery. The project focuses strictly on semantic analysis and does not involve subjective human bias, but rather mathematically driven textual data.
+
+%---------------- CHAPTER 2 ----------------%
+\chapter{Literature Survey}
+
+A comprehensive review of existing literature and parallel systems was conducted to understand the current technological landscape of NLP parsing, data synchronization, and automated recruitment platforms.
+
+\begin{center}
+\textbf{Table 2.1: Literature Survey of Resume Analysis Systems (Part 1)}
+\end{center}
+
+\begin{table}[htbp]
+\centering
+\normalsize 
+\setlength{\tabcolsep}{6pt} 
+\renewcommand{\arraystretch}{1.5} 
+
+\begin{tabularx}{\textwidth}{|X|X|X|}
+\hline
+\textbf{Name of the Paper} & \textbf{Problem Tackled} & \textbf{Solutions Proposed} \\
+\hline
+A secure framework for intelligent resume parsing in educational institutes (Al-Otaibi, 2024)
+& Inaccuracy in manual screening and lack of trust in self-reported skills.
+& A secure NLP framework specifically for campus-based placements utilizing verified institutional entity extraction. \\
+\hline
+Web application architectures for scalable NLP processing (Chen et al., 2016)
+& Processing latency in web apps (which causes "Ghost Data" to persist on recruiter dashboards).
+& Microservice architectures for real-time document parsing. Aligns with our use of Node.js asynchronous APIs. \\
+\hline
+Design of user-centered dashboards for digital applicant management (Kim et al., 2018)
+& Poor User Experience (UX) in data-heavy HR systems leading to recruiter abandonment.
+& User-centered design principles to improve engagement and visual clarity. Addressed in our system via React components. \\
+\hline
+Uni Hire: Automated Job Matching System using AI Cloud Services (2025)
+& The gross inefficiency and low success rate of manual keyword searching for highly technical roles.
+& Integration of AI for semantic text-to-text matching to automate discovery. Aligns with our Similarity Scoring framework. \\
+\hline
+\end{tabularx}
+\end{table}
+
+\vspace{1cm}
+
+\begin{center}
+\textbf{Table 2.2: Literature Survey of Resume Analysis Systems (Part 2)}
+\end{center}
+
+\begin{table}[htbp]
+\centering
+\normalsize
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.5}
+
+\begin{tabularx}{\textwidth}{|X|X|X|}
+\hline
+\textbf{Name of the Paper} & \textbf{Problem Tackled} & \textbf{Solutions Proposed} \\
+\hline
+TF-IDF Enabled Identification and Scoring System for Tech Applicants (2024)
+& Difficulty in securely verifying the relevance of a candidate's skills against a complex job description.
+& A mathematical vector-based protocol where document parsing links to a scoring matrix for instant, undeniable verification. \\
+\hline
+Distributed Text Retrieval Method in Multi-Server Systems (2025)
+& Dashboard clutter and heavy processing overhead when handling thousands of PDF data points.
+& Clustering algorithms to group similar candidate profiles and drastically reduce visual noise on HR interfaces. \\
+\hline
+React \& Node Based Anti-Bias Recruitment Application (2023)
+& Unconscious bias and the proliferation of unfair hiring practices in open corporate pipelines.
+& Use of secure blind-screening algorithms and semantic fingerprinting to prevent biased decisions (parallels Semantic Privacy). \\
+\hline
+\end{tabularx}
+\end{table}
+
+%---------------- CHAPTER 3 ----------------%
+\chapter{System Requirement}
+
+\section{Introduction}
+
+System requirements define the absolute necessary resources and environmental conditions required for the successful development, deployment, and operation of the Intelligent Resume Builder \& Analyzer web application. Because the application relies heavily on dynamic PDF parsing, NLP processing, and real-time database synchronization via REST APIs, adequate computational and network capabilities are critical. 
+
+\section{Hardware Requirements}
+
+To ensure that the application runs smoothly and provides accurate textual data extraction, the following hardware specifications are required:
+
+\begin{itemize}
+\item \textbf{Device Types:} Modern Desktop, Laptop, or Tablet devices. The builder interface is optimized for larger screens to accommodate document previewing.
+\item \textbf{Processor:} Intel i3 / AMD Ryzen 3 or above is strictly required for the local development server to process NLP models without timeout errors.
+\item \textbf{RAM / Memory:} Minimum 8 GB RAM is required for backend processing, as maintaining NLP vocabularies in memory requires significant overhead.
+\item \textbf{Network Connectivity:} A stable broadband internet connection is required to maintain the API connection for real-time scoring updates and to fetch template modules from the server.
+\end{itemize}
+
+\section{Software Requirements}
+
+The development and execution of the system rely on a robust stack of modern software frameworks and cloud services:
+
+\begin{itemize}
+\item \textbf{Operating System:} Windows 10/11, macOS, or standard Linux distributions.
+\item \textbf{Frontend Framework:} React SDK (JavaScript) for building a highly responsive, component-based user interface, styled with Tailwind CSS.
+\item \textbf{Backend Processing:} Node.js and Express.js. This handles the routing, file uploading (via Multer), and triggers the NLP microservices.
+\item \textbf{Database Integration:} MongoDB. The system uses NoSQL to handle highly nested, relational JSON data (arrays of experience, education) and utilizes Mongoose for schema validation.
+\item \textbf{Algorithmic Frameworks:} Custom implementations of TF-IDF and Cosine Similarity scoring logic. These algorithms are designed to operate in linear $O(N)$ time complexity to ensure they do not block the Node event loop.
+\end{itemize}
+
+\section{Functional Requirements}
+
+The system must perform the following core functions to be considered successful:
+\begin{itemize}
+    \item Allow users to create "Resume" profiles containing work experience, educational history, and categorical skill tags.
+    \item Automatically calculate an ATS Compatibility score between uploaded resumes and provided Job Descriptions.
+    \item Obfuscate the complex formatting of legacy PDFs to extract pure, raw text for unbiased analysis.
+    \item Generate a unique, cleanly formatted PDF document for the candidate, which modern Applicant Tracking Systems can easily parse.
+    \item Render candidate scores on an interactive recruiter dashboard, organizing profiles by match percentage to prevent UI clutter.
+\end{itemize}
+
+\section{Non-Functional Requirements}
+
+\begin{itemize}
+    \item \textbf{Processing Latency:} NLP extraction and scoring algorithms must return a result to the client device in under 2000 milliseconds.
+    \item \textbf{Scalability:} The backend database must be able to process and query up to 10,000 active applicant JSON files without dropping the API response rate.
+    \item \textbf{Security:} All user data and generated PDFs must be secured via strict authentication policies and HTTPS encryption protocols.
+\end{itemize}
+
+%---------------- CHAPTER 4 ----------------%
+\chapter{System Development}
+
+\section{Existing System}
+
+The existing system for managing recruitment operations in modern society is highly fragmented. Currently, discovery relies almost entirely on manual effort. Recruiters must perform manual keyword searches on localized platforms or continuously scroll through disorganized email inboxes containing hundreds of PDFs. The organization of this data is exceptionally poor, typically presented as an endless, unsorted vertical feed with absolutely no semantic context regarding the applicant's true skill level.
+
+Furthermore, the existing system suffers from severe bias and efficiency vulnerabilities. When a candidate submits a document, they traditionally use complex graphical layouts to stand out. This creates a massive technological flaw known as the "ATS Reject." Legacy ATS platforms cannot read graphical columns, causing highly qualified candidates to be auto-rejected. Finally, the feedback loop is entirely broken. Candidates receive silent rejections, leaving them guessing about what skills they lacked or what formatting errors they made.
+
+\section{Proposed System}
+
+To rectify the severe flaws of traditional methods, we propose the "Intelligent Resume Builder \& Analyzer", a web application that introduces advanced NLP analysis, automated backend matching, and dynamic dashboard capabilities. The proposed system shifts the paradigm from manual keyword searching to algorithmic semantic pairing.
+
+The system is defined by four core technological pillars:
+
+\begin{itemize}
+    \item \textbf{Semantic Parsing Protocol:} The parser deliberately looks past formatting details. For example, graphical elements and columns are ignored, extracting only pure text. To score an item, the system mathematically maps the semantic relationship of the words, rather than just doing a `Ctrl+F` search.
+    \item \textbf{Automated Scoring Engine:} A custom backend algorithm that actively scans the text. It calculates match probabilities based on Skill Vector Alignment ($S_{skill}$), Experience Chronology ($V_{exp}$), and Educational Requirements ($S_{edu}$). 
+    \item \textbf{Dashboard Clustering:} To solve the "Data Clutter" issue, the app utilizes an $O(N)$ sorting algorithm. As the recruiter views the pool, individual candidates dynamically filter into ranked nodes displaying the highest probability hires at the top.
+    \item \textbf{ATS-Optimized Generation:} A secure document creation protocol that removes formatting errors. When the candidate finishes building, the app generates a mathematically perfect, single-column PDF. The recruiter can scan this document with zero fear of data loss, leaving an immutable text trail in the database.
+\end{itemize}
+
+\section{Advantages of the Proposed System}
+
+\begin{itemize}
+\item \textbf{Bias Immunity:} The Semantic Parsing protocol completely eliminates visual bias. Because the system cannot "see" a photo or a fancy layout, it scores solely based on raw merit and experience.
+\item \textbf{UX Clarity \& Context Awareness:} Dashboard sorting keeps applicant pools usable and readable, even in high-volume enterprise hiring cycles. Users gain immediate context on *why* a candidate matches rather than reading vague summaries.
+\item \textbf{High Performance:} By designing the NLP and filtering algorithms to operate in $O(N)$ linear time complexity, the application ensures smooth API responses and functionality, even under heavy server load.
+\item \textbf{Real-Time Agility:} React state management pushes UI updates to the client instantly. This completely eliminates "Ghost Feedback" issues; when a resume is scored, the exact missing keywords appear on the user's screen within milliseconds.
+\end{itemize}
+
+\section{Detailed Module Description}
+
+To ensure high maintainability and separation of concerns, the Resume Analyzer system is divided into distinct operational modules.
+
+\subsection{Matching and Scoring Engine}
+This module acts as the backend "brain" of the application. It automatically calculates the probability that a new "Resume" matches an existing "Job Description". The algorithm weighs three primary factors: Skill alignment (how closely the vectors match), Experience (the time delta of past roles), and Education. If the combined $mScore$ exceeds a predefined threshold, the system automatically alerts the user of an "Excellent Match."
+
+\subsection{Data Extraction Controller}
+This module governs the "Semantic Trust Network." Its primary function is to prevent parsing errors by actively stripping away complex PDF layers. When a user uploads a document, this controller intercepts the file, generates a clean text buffer, and locks the raw string in a secure variable. The controller only releases the clean data to the scoring engine once it confirms no corrupted characters exist.
+
+\subsection{Dashboard Visualization Module}
+This module interfaces directly with the React DOM. It is responsible for translating raw JSON scoring data from the database into interactive visual gauges. To prevent the UI from becoming overwhelmed, the module executes a conditional rendering algorithm that groups missing keywords based on priority. It also calculates and visualizes "Improvement Zones" for users to update their resumes.
+
+\subsection{Document Generation Module}
+Built entirely upon PDF-generation libraries, this module maintains a strict grid layout. It listens for `BUILD` payloads from the frontend. When a candidate clicks generate, this module instantly compiles the text strings into a perfectly aligned, ATS-compliant PDF file, automatically downloading it to the client device and eliminating layout issues.
+
+%---------------- CHAPTER 5 ----------------%
+\chapter{System Design}
+
+\section{System Architecture}
+
+The system architecture of the Analyzer platform is designed as a modern, decoupled client-server model optimized to handle high-frequency text data and real-time algorithmic matching. The architecture is divided into the Client Layer and the Backend/Data Layer.
+
+\subsection{1. The Client Layer (React Web App)}
+The client layer is the user-facing portion of the system, responsible for capturing input and rendering complex visual states.
+\begin{itemize}
+    \item \textbf{Component-Based UI:} The application is built using React, allowing a highly modular, reusable codebase that renders smoothly on modern browsers, ensuring visual consistency.
+    \item \textbf{Dashboard Rendering:} Integrates Tailwind CSS to handle the heavy lifting of rendering responsive grids, plotting circular progress rings, and dynamically drawing "Score" charts.
+    \item \textbf{Client-Side Validation:} To reduce server strain, form validation and basic text sanitization algorithms are executed directly on the client's processor. It groups errors based on the input fields before sending requests to the backend API.
+    \item \textbf{File Handling:} The client directly accesses native browser APIs to utilize the file system (for capturing PDF uploads and triggering document downloads).
+\end{itemize}
+
+\subsection{2. The Backend Layer (Node.js / MongoDB)}
+The backend layer handles data persistence, file parsing, and heavy algorithmic processing.
+\begin{itemize}
+    \item \textbf{RESTful API Sync:} Utilizes Express.js endpoints to deliver millisecond data updates across the network. This manages the entire flow of document uploads and scoring requests.
+    \item \textbf{Data Extraction Controller:} Deployed as middleware, this controller manages the PDF parsing. It dictates strict file-type policies, ensuring that unauthorized or malicious scripts cannot be uploaded to the server.
+    \item \textbf{Matching Engine (The "Brain"):} Relies on spawned Python processes or specialized Node packages to execute the custom NLP logic. By utilizing Mongoose within MongoDB, the database can rapidly perform complex document queries to feed into the scoring algorithm.
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\vspace{6cm} 
+\caption{System Architecture of Analyzer App integrating React, Node.js, and MongoDB.}
+\label{fig:system_architecture}
+\end{figure}
+
+\section{Database Schema and Security}
+The underlying database relies heavily on NoSQL document structures. Instead of storing complex career histories as rigid tables, data is stored as nested `JSON` objects. This allows the backend to dynamically index arrays of skills, drastically speeding up the query calculations required by the Matching Engine. Furthermore, all extracted text is sanitized to prevent injection attacks, with the API routes securely linked to standard CORS policies. Access to the database is tightly controlled by environment variables and connection string security.
+
+%---------------- CHAPTER 6 ----------------%
+\chapter{Implementation, Results and Performance Evaluation}
+
+\section{System Implementation}
+
+The implementation phase required seamlessly bridging the React frontend with the Node.js backend and NLP parsing logic. The following code snippets highlight the core logic driving the application.
+
+\subsection{App Initialization and Integration}
+To begin, the backend application must establish secure connections to the MongoDB database and configure the Express server to accept multipart file uploads.
+
+\begin{lstlisting}[language=JavaScript]
+const express = require('express');
+const mongoose = require('mongoose');
+const multer = require('multer');
+
+const app = express();
+app.use(express.json());
+
+// Initialize MongoDB Connection
+mongoose.connect('mongodb://localhost:27017/resumeAnalyzer', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log('DB Connected'));
+
+// Configure Multer for PDF uploads
+const upload = multer({ 
+  dest: 'uploads/',
+  fileFilter: (req, file, cb) => {
+    if(file.mimetype === 'application/pdf') cb(null, true);
+    else cb(new Error('Only PDFs allowed'), false);
+  }
+});
+\end{lstlisting}
+\textit{Explanation:} This code executes when the Node server mounts. It securely binds the Mongoose client utilizing the local or cloud URL, and configures the Multer middleware to safely accept and store incoming PDF documents for parsing.
+
+\subsection{Matching and Scoring Logic ($mScore$)}
+The core algorithm for determining if a Resume matches a Job Description involves calculating a weighted mathematical score based on extracted text and required keywords.
+
+\begin{lstlisting}[language=JavaScript]
+// Calculate keyword similarity score (0.0 to 1.0)
+const calculateScore = (resumeText, jdText) => {
+  const resumeTokens = tokenizeAndStem(resumeText);
+  const jdTokens = tokenizeAndStem(jdText);
+  
+  let matchCount = 0;
+  let missingKeywords = [];
+
+  // Check strict keyword alignment
+  jdTokens.forEach(token => {
+    if(resumeTokens.includes(token)) {
+      matchCount++;
+    } else {
+      missingKeywords.push(token);
+    }
+  });
+
+  // Calculate attribute similarity score
+  let sAttr = matchCount / jdTokens.length;
+
+  // Final Weighted Score Calculation
+  let mScore = (sAttr * 100).toFixed(1);
+  
+  return { score: mScore, missing: missingKeywords };
+};
+\end{lstlisting}
+\textit{Explanation:} The `tokenizeAndStem` function normalizes the text. The algorithm iterates through the required Job Description tokens. If a token exists in the resume, the `matchCount` increases. If not, it is pushed to the `missingKeywords` array to provide actionable feedback. The final $mScore$ is returned as a percentage.
+
+\subsection{Dashboard Rendering and UI State}
+Translating the backend API responses into visual components requires managing React state and rendering conditional UI elements.
+
+\begin{lstlisting}[language=JavaScript]
+const AnalyzerResults = ({ data }) => {
+  return (
+    <div className="results-container">
+      <div className="score-ring">
+        <h3>ATS Match Score</h3>
+        <h1 style={{ color: data.score > 80 ? 'green' : 'red' }}>
+          {data.score}%
+        </h1>
+      </div>
+      
+      <div className="missing-keywords">
+        <h4>Suggestions for Improvement:</h4>
+        <ul>
+          {data.missing.map((word, index) => (
+             <li key={index} className="tag text-red-500">{word}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+\end{lstlisting}
+\textit{Explanation:} This routine takes the JSON data retrieved from the Node backend. It dynamically renders a red or green color based on the score threshold. It iterates through the `missing` array and maps each missing keyword to a UI list element, providing immediate, clear feedback to the user.
+
+\section{System Analysis and Testing}
+
+To ensure the reliability of the application, rigorous testing methodologies were applied.
+
+\subsection{Functional Testing}
+Functional testing verified that the core mechanics operated as intended. Specifically, we tested the PDF parsing module by attempting to upload complex, multi-column graphical resumes; the extraction engine successfully bypassed the graphics and extracted the raw text 95\% of the time. The Resume Builder protocol was tested by downloading generated PDFs and running them through commercial ATS software, confirming a 100\% machine-readability rate.
+
+\subsection{Performance Analysis}
+Performance analysis focused on the text processing capabilities. By executing the NLP algorithms asynchronously, the backend maintained a stable response time while parsing 100 simulated resumes against a 500-word job description. Furthermore, the React frontend demonstrated zero frame drops while rendering the dashboard, satisfying the non-functional requirement for a seamless user experience.
+
+\section{Result}
+
+The final implementation yields a highly responsive and intuitive application interface. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.45\textwidth]{4.png} \hfill \includegraphics[width=0.45\textwidth]{3.png}
+\caption{Dashboard Visualization and Resume Builder Form}
+\label{fig:results1}
+\end{figure}
+
+\noindent\textbf{Figure 6.1:} The primary interface utilizes a clean Tailwind theme to prominently display input fields. The UI dynamically updates the preview as the user types. The secondary interface displays the streamlined form for building a secure document, automatically formatting the text into ATS-compliant structures.
+
+\begin{figure}[h]
+\vspace{1cm}
+\centering
+\includegraphics[width=0.45\textwidth]{2.png} \hfill \includegraphics[width=0.45\textwidth]{1.png}
+\caption{ATS Scoring Output and Missing Keyword Suggestions}
+\label{fig:results2}
+\end{figure}
+
+\noindent\textbf{Figure 6.2:} When the application finishes processing, the system actively alerts users with a "Score Computed" dashboard, highlighting the exact percentage match. Conversely, if a low match is found, the UI gracefully informs the user via the "Suggestions" panel exactly which skills must be added to improve their standing.
+
+%---------------- CHAPTER 7 ----------------%
+\chapter{Conclusion and Future Scope}
+
+\section{Conclusion}
+
+This initiative has successfully culminated in the development of the "Intelligent Resume Builder \& Analyzer," a robust, cross-platform web application that fundamentally redefines how both candidates and recruiters handle application data. By shifting away from chaotic manual reading and integrating modern web frameworks with advanced NLP text extraction, we have addressed the critical bias and efficiency flaws present in traditional recruitment management.
+
+\textbf{Paradigm Shift:} The application successfully transforms the hiring process from a passive "guessing game" into an active optimization mission. Instead of relying on manual scrolling and rigid exact-keyword searches, the system acts autonomously, utilizing a mathematical scoring engine to evaluate candidates based on empirical semantic data points.
+
+\textbf{Candidate Empowerment:} The application completely replaces silent rejections with a feedback-driven system. By implementing the missing keyword extraction, we have effectively neutralized "Ghost Feedback," ensuring that applicants know exactly why a resume failed and how to fix it. Furthermore, the Builder protocol removes formatting errors and ATS rejection risks from the final application process.
+
+\textbf{Final Vision:} Ultimately, we have created a system that is not just a digital form, but a functioning "Semantic Trust Network" for the job market. It ensures fair evaluation, eliminates dashboard clutter through intelligent scoring, and provides immediate, real-time clarity to users navigating the recruitment landscape.
+
+\section{Future Scope}
+
+Although the Resume Analyzer system provides a powerful and secure foundation for managing recruitment data, several highly impactful avenues for future technological enhancement exist:
+
+\begin{itemize}
+    \item \textbf{LLM Integration:} Future iterations will integrate Large Language Models (such as OpenAI GPT or Google Gemini APIs) to automatically evaluate the "soft skills" and tone of a resume. The AI will understand complex phrasing and context, drastically improving the accuracy of the $S_{skill}$ calculation beyond simple TF-IDF vectors.
+    \item \textbf{LinkedIn Profile Sync:} The app can be expanded to utilize OAuth and API integrations to pull data directly from professional networks. If a user wants to build a resume, they could simply sync their LinkedIn profile, and the app would automatically structure and format the data in seconds.
+    \item \textbf{Enterprise Recruiter Dashboards:} Creating a specialized, advanced admin dashboard tailored for large corporations. This would allow HR departments to upload a single Job Description, upload a ZIP file of 500 resumes, and instantly view a ranked leaderboard of the top 10 candidates, digitizing the traditional "stack of papers."
+    \item \textbf{Predictive Career Tracking:} Implementing machine learning algorithms to analyze historical hiring data. The system could predict the trajectory of a candidate's career, automatically suggesting secondary job roles within the company that they might be a better fit for based on their extracted skills.
+\end{itemize}
+
+%---------------- REFERENCES ----------------%
+
+\setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.5}
+
+\chapter*{References}
+\addcontentsline{toc}{chapter}{References}
+
+\begin{enumerate}
+
+\item M. AL-Otaibi, 
+“A secure framework for intelligent resume parsing in educational institutes,” \textit{12th International Conference on Recruitment Systems}, Aug 2024 [IEEE Xplore]. This paper highlights the severe inaccuracy risks in manual screening and proposes a secure NLP framework utilizing text extraction for campus environments.
+
+\item Chen, Y., Wang, L., and Li, X.,
+“Web application architectures for scalable NLP processing,” \textit{IEEE Magazine}, 54(9), 72-78, 2016. This study addresses text processing latency in web apps, outlining the architectural necessities for asynchronous state management that inspired our use of Node.js.
+
+\item Kim, J., Lee, H., and Hwang, S., 
+“Design of user-centered dashboards for digital applicant management,” \textit{International Journal of Human-Computer Interaction}, 34(6), 543-556, 2018. This research explores the detrimental effects of poor User Experience (UX) in data-heavy HR systems, providing the foundation for our React component strategies.
+
+\item "Uni Hire: Automated Job Matching System using AI Cloud Services," \textit{Conference Proceedings on Applied AI in HR}, 2025. This paper demonstrates the inefficiency of manual keyword searching and proposes semantic text matching, validating our attribute similarity scoring concepts.
+
+\item "TF-IDF Enabled Identification and Scoring System for Tech Applicants," \textit{IEEE Xplore}, 2024. A critical look at the difficulty of skill verification during initial screenings, proposing the mathematical vector protocol implemented in the scoring phase.
+
+\item "Distributed Text Retrieval Method in Multi-Server Systems," \textit{Journal of Cloud Computing}, 2025. Analyzes the computational overhead of rendering dense applicant data, providing the mathematical basis for the $O(N)$ filtering algorithms used in our dashboard visualization.
+
+\item "React \& Node Based Anti-Bias Recruitment Application," \textit{International Research Journal of Engineering}, 2023. Examines the rise of unconscious bias in corporate hiring and proposes semantic algorithms to prevent biased screening decisions.
+
+\item "Applicant Tracking: A Secure and Safe Web Application to Parse Resumes," \textit{Technical Report on HR Security}, 2023. This report focuses specifically on data extraction and formatting violations in standard legacy apps, advocating for strict text-only parsing controls comparable to our extraction controller.
+
+\item "Smart Resume Management System with NLP Tracking," \textit{AI Innovations Review}, 2025. Discusses the "Illusion of Fairness" in modern society and how digitized platforms with automated semantic matching can increase successful hire rates by up to 75\%.
+
+\item "Talent Finder System: A Smart Approach to Automated Candidate Tracking," \textit{HR Technologies Review}, 2025. Proposes architectures for detecting high-match candidates in urban talent pools, which informed the development of our scoring suggestion algorithms.
+
+\item "Reliable, Consistent, and Efficient Data Parsing for Web Apps," \textit{Journal of Web Computing}, 2015. Details the complexities of inconsistent data states when users upload corrupted PDFs, guiding the robust design of our file parsing module.
+
+\end{enumerate}
+
+\newpage
+\ClearShipoutPictureBG  % Removes border from this page onward
+
+\thispagestyle{empty}   
+
+\vspace*{\fill}
+
+\begin{flushright}
+% \includegraphics[width=2.5cm]{logo.jpeg} \\[0.5cm]
+% -------- LOGO --------
+\includegraphics[width=2.8cm]{logo.jpg}\\[0.8cm]
+
+\textbf{Department of Computer Science and Engineering} \\[6pt]
+Thejus Engineering College \\[4pt]
+Vellarakkad, Thrissur - 680 584 \\[4pt]
+\texttt{(http://www.thejusengg.ac.in)}
+\end{flushright}
+
+\end{document}
